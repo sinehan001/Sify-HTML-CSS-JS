@@ -166,10 +166,13 @@ body {
     }
 }
 
-.content-text p {
-    max-width: 800px;
+.content-text {
     display: grid;
     place-items: center;
+}
+
+.content-text p {
+    max-width: 800px;
 }
 
 .technologies .row .d-flex img {
