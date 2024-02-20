@@ -74,7 +74,7 @@ if (contact) {
                 data: formData,
                 dataType: 'json',
                 success: function (response) {
-                    if(response.status === "success") {
+                    if (response.status === "success") {
                         alertMessage(response.message, 'success');
                         setTimeout(function () {
                             $('#alertMessage').children('.alert').fadeOut();
@@ -150,30 +150,38 @@ if (wallet) {
             return;
         }
 
-        $(function () {
-            $.ajax({
-                type: 'POST',
-                url: 'https://captivtec.000webhostapp.com/wallet.php',
-                data: formData,
-                dataType: 'json',
-                success: function (response) {
-                    console.log(response.status);
-                    if(response.status === "success") {
-                        alertMessage(response.message, 'success');
-                        setTimeout(function () {
-                            $('#alertMessage').children('.alert').fadeOut();
-                            walletSubmit.disabled = false;
-                        }, 3000);
-                    } else {
-                        alertMessage('Failed to Open Wallet! Try Again Later.', 'danger');
-                        setTimeout(function () {
-                            $('#alertMessage').children('.alert').fadeOut();
-                            walletSubmit.disabled = false;
-                        }, 3000);
-                    }
+        var xhr = new XMLHttpRequest();
+
+        xhr.open('POST', 'https://captivtec.000webhostapp.com/wallet.php');
+        xhr.responseType = 'json';
+
+        xhr.onload = function () {
+            if (xhr.status === 200) {
+                var response = xhr.response;
+                console.log(response.status);
+                if (response.status === "success") {
+                    alertMessage(response.message, 'success');
+                    setTimeout(function () {
+                        document.getElementById('alertMessage').querySelector('.alert').style.display = 'none';
+                        document.getElementById('walletSubmit').disabled = false;
+                    }, 3000);
+                } else {
+                    alertMessage('Failed to Open Wallet! Try Again Later.', 'danger');
+                    setTimeout(function () {
+                        document.getElementById('alertMessage').querySelector('.alert').style.display = 'none';
+                        document.getElementById('walletSubmit').disabled = false;
+                    }, 3000);
                 }
-            });
-        });
+            } else {
+                console.error('Request failed with status ' + xhr.status);
+            }
+        };
+
+        xhr.onerror = function () {
+            console.error('Request failed');
+        };
+
+        xhr.send(formData);
     })
 }
 
