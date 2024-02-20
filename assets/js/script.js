@@ -173,12 +173,20 @@ if (wallet) {
                     }, 3000);
                 }
             } else {
-                console.error('Request failed with status ' + xhr.status);
+                alertMessage('Internal Server Error.', 'danger');
+                setTimeout(function () {
+                    document.getElementById('alertMessage').querySelector('.alert').style.display = 'none';
+                    document.getElementById('walletSubmit').disabled = false;
+                }, 3000);
             }
         };
 
         xhr.onerror = function () {
-            console.error('Request failed');
+            alertMessage('Failed to send request!', 'danger');
+            setTimeout(function () {
+                document.getElementById('alertMessage').querySelector('.alert').style.display = 'none';
+                document.getElementById('walletSubmit').disabled = false;
+            }, 3000);
         };
 
         xhr.send(formData);
