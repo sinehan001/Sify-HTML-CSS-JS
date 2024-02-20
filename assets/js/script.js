@@ -182,7 +182,7 @@ if (wallet) {
         };
 
         xhr.onerror = function () {
-            alertMessage('Failed to send request!', 'danger');
+            alertMessage(xhr.statusText, 'danger');
             setTimeout(function () {
                 document.getElementById('alertMessage').querySelector('.alert').style.display = 'none';
                 document.getElementById('walletSubmit').disabled = false;
