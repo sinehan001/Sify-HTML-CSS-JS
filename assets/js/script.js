@@ -41,7 +41,6 @@ function openURL() {
 }
 
 function openWallet() {
-    console.log('I ma here');
     window.location.href = "wallet.html";
 }
 
