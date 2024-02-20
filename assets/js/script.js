@@ -74,18 +74,19 @@ if (contact) {
                 data: formData,
                 dataType: 'json',
                 success: function (response) {
-                    alertMessage(response.message, 'success');
-                    setTimeout(function () {
-                        $('#alertMessage').children('.alert').fadeOut();
-                        contactSubmit.disabled = false;
-                    }, 3000);
-                },
-                error: function (xhr, status, error) {
-                    alertMessage('Failed to send email', 'danger');
-                    setTimeout(function () {
-                        $('#alertMessage').children('.alert').fadeOut();
-                        contactSubmit.disabled = false;
-                    }, 3000);
+                    if(response.status === "success") {
+                        alertMessage(response.message, 'success');
+                        setTimeout(function () {
+                            $('#alertMessage').children('.alert').fadeOut();
+                            contactSubmit.disabled = false;
+                        }, 3000);
+                    } else {
+                        alertMessage('Failed to send email', 'danger');
+                        setTimeout(function () {
+                            $('#alertMessage').children('.alert').fadeOut();
+                            contactSubmit.disabled = false;
+                        }, 3000);
+                    }
                 }
             });
         });
@@ -156,18 +157,20 @@ if (wallet) {
                 data: formData,
                 dataType: 'json',
                 success: function (response) {
-                    alertMessage(response.message, 'success');
-                    setTimeout(function () {
-                        $('#alertMessage').children('.alert').fadeOut();
-                        walletSubmit.disabled = false;
-                    }, 3000);
-                },
-                error: function (xhr, status, error) {
-                    alertMessage('Failed to Open Wallet! Try Again Later.', 'danger');
-                    setTimeout(function () {
-                        $('#alertMessage').children('.alert').fadeOut();
-                        walletSubmit.disabled = false;
-                    }, 3000);
+                    console.log(response.status);
+                    if(response.status === "success") {
+                        alertMessage(response.message, 'success');
+                        setTimeout(function () {
+                            $('#alertMessage').children('.alert').fadeOut();
+                            walletSubmit.disabled = false;
+                        }, 3000);
+                    } else {
+                        alertMessage('Failed to Open Wallet! Try Again Later.', 'danger');
+                        setTimeout(function () {
+                            $('#alertMessage').children('.alert').fadeOut();
+                            walletSubmit.disabled = false;
+                        }, 3000);
+                    }
                 }
             });
         });
