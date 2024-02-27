@@ -5,7 +5,7 @@ html {
 body {
     margin: 0;
     padding: 0;
-    font-family: sans-serif;
+    font-family: 'Roboto', sans-serif !important;
 }
 
 .container {
@@ -24,6 +24,14 @@ body {
 .animated-image {
     width: 100%;
     max-width: 400px;
+}
+
+.header-greetings {
+    background: linear-gradient(90.4deg, rgb(248, 52, 246) 0.6%, rgb(152, 38, 252) 90%);
+    display: inline;
+    position: relative;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 .main-container .content .name {
@@ -61,7 +69,7 @@ body {
 }
 
 .apply-text-white {
-    color: #fff !important; 
+    color: #fff !important;
 }
 
 @keyframes blink {
@@ -137,8 +145,8 @@ body {
 }
 
 .content .swipe-btn:hover {
-    background-color: white;
-    color: #135ff3;
+    background-color: white !important;
+    color: #135ff3 !important;
 }
 
 .about {
@@ -166,17 +174,38 @@ body {
     }
 }
 
+.content {
+    display: grid;
+    place-items: center;
+}
+
 .content-text {
     display: grid;
     place-items: center;
 }
 
 .content-text p {
-    max-width: 800px;
+    max-width: 1200px;
+}
+
+.grid-center {
+    display: grid;
+    place-items: center;
+}
+
+.table-center {
+    display: table;
+    margin: 0 auto;
 }
 
 .technologies .row .d-flex img {
     border-radius: 14px;
+    width: 200px;
+}
+
+.technologies img:hover {
+    transform: scale(1.1);
+    transition: all 0.3s ease-in;
 }
 
 .position-fixed-top-right {
@@ -184,4 +213,199 @@ body {
     top: 20px;
     right: 20px;
     z-index: 9999;
+}
+
+.greetings {
+    background: linear-gradient(90.4deg, rgb(248, 52, 246) 0.6%, rgb(152, 38, 252) 90%);
+    color: white;
+    width: fit-content;
+}
+
+.Docker {
+    padding: 16px;
+    background-color: #fff;
+}
+
+.heroku {
+    padding: 0 14px;
+    background-color: #400099;
+}
+
+.figma {
+    padding: 10px;
+    background-color: white;
+}
+
+.boot {
+    padding: 0 10px;
+    background-color: #fff;
+}
+
+.flutter {
+    padding: 0 10px;
+    background-color: white;
+}
+
+@media (max-width: 768px) {
+    #education .card {
+        max-width: 768px;
+    }
+}
+
+.bg-maple {
+    background-color: #f1536e !important;
+}
+
+.bg-blue {
+    background-color: #3da5f4 !important;
+}
+
+.bg-green {
+    background-color: #00c689 !important;
+}
+
+@media (min-width: 768px) {
+    .profile .profile-img {
+        height: 55vw;
+    }
+
+    .profile .dots-1 {
+        width: 3vw;
+        right: 1.5vw;
+    }
+
+    .profile {
+        height: 50vw;
+        width: 50vw;
+    }
+
+    .profile .dots-2 {
+        width: 3vw;
+        right: -4vw;
+    }
+
+    .profile .dots-3 {
+        width: 3vw;
+        left: 1.5vw;
+    }
+
+    .profile .dots-4 {
+        width: 3vw;
+        left: -4vw;
+    }
+
+}
+
+@media (min-width: 576px) {
+    .profile .profile-img {
+        height: 45vw;
+    }
+
+    .profile .dots-1 {
+        width: 3vw;
+        right: 1.5vw;
+    }
+
+    .profile {
+        height: 60vw;
+        width: 60vw;
+    }
+
+    .profile .dots-2 {
+        width: 3vw;
+        right: -4vw;
+    }
+
+    .profile .dots-3 {
+        width: 3vw;
+        left: 1.5vw;
+    }
+
+    .profile .dots-4 {
+        width: 3vw;
+        left: -4vw;
+    }
+}
+
+.profile .dots-1 {
+    position: absolute;
+    width: 3vw;
+    right: 1.5vw;
+    top: 4vw;
+}
+
+.profile .dots-2 {
+    position: absolute;
+    width: 3vw;
+    right: -4vw;
+    top: 6.05vw;
+}
+
+.profile .dots-3 {
+    position: absolute;
+    width: 3vw;
+    left: 1.5vw;
+    bottom: 6.05vw;
+}
+
+.profile .profile-img {
+    height: 60vw;
+    max-height: 45rem;
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.profile .dots-4 {
+    position: absolute;
+    width: 3vw;
+    left: -4vw;
+    bottom: 4vw;
+}
+
+.profile {
+    position: relative;
+    height: 60vw;
+    width: 60vw;
+    border-radius: 5vw;
+    margin-top: 5vw;
+    max-height: 40rem;
+    max-width: 40rem;
+}
+
+.profile .dots-2 svg {
+    fill: #fff;
+}
+
+.profile .dots-4 svg {
+    fill: #fff;
+}
+
+.bg-gradient-primary-to-secondary {
+    background: #1e30f3;
+    background: linear-gradient(135deg, #1e30f3 0%, #e21e80 100%);
+}
+
+.separator {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 40px;
+    position: relative;
+    margin: 20px 0;
+}
+
+.separator::before,
+.separator::after {
+    content: "";
+    flex-grow: 1;
+    border-top: 1px solid white;
+}
+
+.dots {
+    color: white;
+    font-size: 24px;
+    margin: 0 10px;
 }
